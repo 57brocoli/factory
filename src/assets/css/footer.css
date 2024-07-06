@@ -1,0 +1,15 @@
+footer{
+    background-color: var(--dark);
+    padding: 20px;
+}
+.align-right {
+    margin-left: auto; /* pousse cette section vers la droite */
+}
+footer .imgFooter{
+    width: 90px;
+    height: auto;
+}
+footer .logoFooter{
+    width: 50px;
+    height: auto;
+}

@@ -1,0 +1,129 @@
+header {
+    position: fixed;
+    padding: 0 2rem;
+    background-color: var(--dark);
+    width: 100%;
+    z-index: 500;
+    font-weight: bold;
+}
+.navbar {
+    width: 100%;
+    max-width: 1600px;
+    height: 80px;
+    margin : 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar a:hover {
+    color: var(--bleu);
+}
+.navbar .logo{
+    height: 50px;
+    width: 50px;
+    margin-right: 15px;
+}
+.navbar .links {
+    display: flex;
+    gap: 2rem;
+    margin-right: 5em;
+}
+.navbar .burgeurMenuButton {
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+}
+.top{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.actionButton {
+    background-color: var(--green);
+    color: var(--dark);
+    border: 1px solid var(--green);
+    border-radius: 5px;
+    padding: 0.5rem 1.2rem;
+    outline: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+.actionButton:hover{
+    border: 1px solid var(--bleu);
+}
+.pro{
+    background-color: transparent;
+    color: white;
+    border: 1px solid var(--green);
+}
+/* Burger menu */
+.burgerMenu{
+    z-index: 10;
+    display: none;
+    height: 0px;
+    position: absolute;
+    right: 0;
+    top: 80px;
+    width: 100%;
+    background: var(--dark);
+    backdrop-filter: blur(15px);
+    overflow: hidden;
+    border-end-start-radius: 10px;
+    border-end-end-radius: 10px;
+    transition: height 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.150);
+}
+.burgerMenu.open {
+    height: 360px;
+}
+.divider{
+    height: 1px;
+    background-color: white;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;
+}
+.burgerMenu li{
+    padding: 0.7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.buttonsBurgerMenu .actionButton{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+.buttonsBurgerMenu{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Responsove */
+@media (max-width: 990px) {
+    /* header {
+        background: none;
+    } */
+    .navbar .links,
+    .navbar .actionButton{
+        display: none;
+    }
+    .navbar .burgeurMenuButton{
+        display: block;
+    }
+    .burgerMenu{
+        display: block;
+    }
+}
+@media (max-width: 576px) {
+    .burgerMenu{
+        left: 1rem;
+        right: 1rem;
+        width: unset;
+    }
+}

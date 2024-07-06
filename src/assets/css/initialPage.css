@@ -1,0 +1,17 @@
+.initialpage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.tikiButton{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #428dff;
+    transition: 0.5s;
+}
+.tikiButton:hover{
+    transform: scale(0.95);
+}
