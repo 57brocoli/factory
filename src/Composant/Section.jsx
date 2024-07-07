@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-// import { source } from '../assets/variable/Variable';
+import { source } from '../assets/variable/Variable';
 
 Section.propTypes = {
     section: PropTypes.shape({
@@ -40,25 +40,25 @@ function Section({section}) {
     }
     console.log(classs);
     return (
-        <section key={section.id} className={[...classs]}>
+        <section key={section.id} className={classs.join(' ')}>
             <article style={{...styles}}>
                 <h2>{section.title}</h2>
                 <article dangerouslySetInnerHTML={{ __html: section.content }}></article>
-                <div className='imageContainer'>
+            </article>
+            <div className='imageContainer'>
                     {section.images &&
                         section.images.map((img, index) => {
                             return(
                                 <div key={index} className='d-flex a-items-center'>
                                     <img key={index} 
-                                    // src={`${source.uri}${img.name}`} 
-                                    src={`http://127.0.0.1:8000/uploads/page/${img.name}`} 
+                                    src={`${source.uri}${img.name}`} 
+                                    // src={`http://127.0.0.1:8000/uploads/page/${img.name}`} 
                                     alt="image section" className='imageSection'/>
                                 </div>
                             )
                         })
                     }
                 </div>
-            </article>
         </section>
     )
 }

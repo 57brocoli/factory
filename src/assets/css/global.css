@@ -35,9 +35,17 @@ main{
 }
 
 .container{
-    max-width: 1300px;
+    max-width: 80%;
     margin: 0 auto;
 }
+.sideBySide{
+    display: flex;
+    flex-wrap: wrap;
+}
+.sideBySide > * {
+    flex: 1;
+}
+
 .t-center{
     text-align: center;
 }
@@ -187,6 +195,7 @@ main{
 
 .imageContainer{
     display: flex;
+    width: 100%;
     justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
