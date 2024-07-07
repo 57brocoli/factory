@@ -34,7 +34,10 @@ main{
     color: white;
 }
 
-
+.container{
+    max-width: 1300px;
+    margin: 0 auto;
+}
 .t-center{
     text-align: center;
 }
@@ -189,7 +192,7 @@ main{
     gap: 20px;
 }
 .imageSection{
-    max-width: 400px;
+    max-width: 350px;
     height: auto;
     border-radius: 5px;
     background-position: center;

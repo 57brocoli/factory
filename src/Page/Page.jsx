@@ -53,7 +53,10 @@ function Page({data}) {
                             .filter(section=>section.Category==='Header')
                             .map(section=>{
                             return(
-                                <section key={section.id} className='header t-center' style={{ backgroundImage: `url(http://127.0.0.1:8000/uploads/page/${section.images[0].name})` }}>
+                                <section key={section.id} className='header t-center'
+                                 style={{ backgroundImage: `url(http://127.0.0.1:8000/uploads/page/${section.images[0].name})` }}
+                                //  style={{ backgroundImage: `url(${source.uri}${section.images[0].name})` }}
+                                 >
                                     <h1>{section.title}</h1>
                                     <article dangerouslySetInnerHTML={{ __html: section.content }}></article>
                                 </section>
