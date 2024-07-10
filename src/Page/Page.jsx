@@ -3,7 +3,7 @@ import Navigation from '../Composant/Navigation';
 import PropTypes from 'prop-types';
 import { useDimention } from '../assets/variable/Variable';
 import Section from '../Composant/Section';
-import { source } from '../assets/variable/Variable';
+// import { source } from '../assets/variable/Variable';
 
 Page.propTypes = {
     data: PropTypes.shape({
@@ -11,13 +11,6 @@ Page.propTypes = {
             PropTypes.shape({
                 id: PropTypes.number.isRequired,
                 Category: PropTypes.string.isRequired,
-                title: PropTypes.string.isRequired,
-                content: PropTypes.string.isRequired,
-                images: PropTypes.arrayOf(
-                    PropTypes.shape({
-                        name: PropTypes.string.isRequired,
-                    })
-                ).isRequired,
             })
         ).isRequired,
         styles: PropTypes.arrayOf(
@@ -54,11 +47,10 @@ function Page({data}) {
                             .map(section=>{
                             return(
                                 <section key={section.id} className='header t-center'
-                                //  style={{ backgroundImage: `url(http://127.0.0.1:8000/uploads/page/${section.images[0].name})` }}
-                                 style={{ backgroundImage: `url(${source.uri}${section.images[0].name})` }}
+                                 style={{ backgroundImage: `url(http://127.0.0.1:8000/uploads/page/${section.contents[0].images[0].name})` }}
+                                //  style={{ backgroundImage: `url(${source.uri}${section.images[0].name})` }}
                                  >
-                                    <h1>{section.title}</h1>
-                                    <article dangerouslySetInnerHTML={{ __html: section.content }}></article>
+                                    <article dangerouslySetInnerHTML={{ __html: section.contents[0].content }}></article>
                                 </section>
                             )
                         })}

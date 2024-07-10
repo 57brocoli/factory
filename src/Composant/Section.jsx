@@ -1,16 +1,11 @@
 import PropTypes from 'prop-types';
-import { source } from '../assets/variable/Variable';
+import Content from './Content';
+// import { source } from '../assets/variable/Variable';
 
 Section.propTypes = {
     section: PropTypes.shape({
         id: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        content: PropTypes.string.isRequired,
-        images: PropTypes.arrayOf(
-            PropTypes.shape({
-                name: PropTypes.string.isRequired,
-            })
-        ).isRequired,
+        contents: PropTypes.array.isRequired,
         styles: PropTypes.arrayOf(
             PropTypes.shape({
                 property: PropTypes.string.isRequired,
@@ -22,6 +17,7 @@ Section.propTypes = {
                 name: PropTypes.string.isRequired,
             })
         ).isRequired,
+        
     }).isRequired,
 };
 
@@ -38,28 +34,16 @@ function Section({section}) {
     if (section && section.class) {
         classs.push(...section.class.map(o => o.name));
     }
-    console.log(classs);
+    console.log(section);
     return (
-        <section key={section.id} className={classs.join(' ')}>
-            <article style={{...styles}}>
-                <h2>{section.title}</h2>
-                <article dangerouslySetInnerHTML={{ __html: section.content }}></article>
-            </article>
-            <div className='imageContainer'>
-                    {section.images &&
-                        section.images.map((img, index) => {
-                            return(
-                                <div key={index} className='d-flex a-items-center'>
-                                    <img key={index} 
-                                    src={`${source.uri}${img.name}`} 
-                                    // src={`http://127.0.0.1:8000/uploads/page/${img.name}`} 
-                                    alt="image section" className='imageSection'/>
-                                </div>
-                            )
-                        })
-                    }
-                </div>
+        <section className={classs.join(' ')} style={{...styles}}>
+            {section.contents.map(content =>{
+                return(
+                    <Content key={content.id} content={content}/>
+                )
+            })}
         </section>
+        
     )
 }
 
