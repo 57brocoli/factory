@@ -38,14 +38,33 @@ function Content({content, type}) {
     if (content && content.class) {
         classs.push(...content.class.map(o => o.name));
     }
+    const header = classs.includes("header")
 
     return (
-        <section className={classs.join(' ')} style={{...styles}}>
-            {type === "header"?
-                    <article dangerouslySetInnerHTML={{ __html: content.content }}></article>
-            :
-                <>
-                    <article dangerouslySetInnerHTML={{ __html: content.content }}></article>
+        <>
+
+            {type === "header" ?
+                // Si la section a pour class 'header' 
+                <section className={classs.join(' ')} style={{...styles}}>
+                    <article dangerouslySetInnerHTML={{ __html: content.content }}/>
+                </section>
+                :
+                // Si le contenu a pour class 'header'
+                header ?
+                    <section className={classs.join(' ')} 
+                    style={{ backgroundImage: content.images[0] ? 
+                            `url(${source.uri}${content.images[0].name})` : 
+                            // `url(http://127.0.0.1:8000/uploads/page/${content.images[0].name})` :
+                            undefined,
+                        ...styles
+                    }}
+                    >
+                        <article dangerouslySetInnerHTML={{ __html: content.content }}/>
+                    </section>
+                :
+                // Si le contenu a pour class 'section'
+                <section className={classs.join(' ')} style={{...styles}}>
+                    <article dangerouslySetInnerHTML={{ __html: content.content }}/>
                     {content.images.length > 0 &&
                         <div className='imageContainer'>
                             {content.images.map((img, index) => {
@@ -60,9 +79,9 @@ function Content({content, type}) {
                             })}
                         </div>
                     }
-                </>
+                </section>
             }
-        </section>
+        </>
     )
 }
 

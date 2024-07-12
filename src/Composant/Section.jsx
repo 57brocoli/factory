@@ -40,8 +40,12 @@ function Section({section}) {
         <>
             {header ? 
                 <section className={classs.join(' ')} 
-                // style={{backgroundImage: `url(http://127.0.0.1:8000/uploads/page/${section.contents[0].images[0].name})`,...styles}}
-                 style={{ backgroundImage: `url(${source.uri}${section.contents[0].images[0].name})` }}
+                style={{ backgroundImage: section.contents[0].images[0] ? 
+                    `url(${source.uri}${section.contents[0].images[0].name})` : 
+                    // `url(http://127.0.0.1:8000/uploads/page/${section.contents[0].images[0].name})` :
+                    undefined,
+                    ...styles
+                }}
                 >
                     {section.contents.map(content => (
                     <Content key={content.id} content={content} type={"header"}/>
