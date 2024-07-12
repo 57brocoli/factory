@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const fetchPages = createAsyncThunk('Pages/fetchPages', async () => {
-    const response = await axios.get('http://127.0.0.1:8000/api/pages')
-    // const response = await axios.get('https://pixelfull.pixelevent.site/api/pages')
+    // const response = await axios.get('http://127.0.0.1:8000/api/pages')
+    const response = await axios.get('https://pixelfull.pixelevent.site/api/pages')
     return response.data['hydra:member']
 })
 
@@ -24,7 +24,7 @@ const pagesSlice = createSlice({
         })
         .addCase(fetchPages.fulfilled, (state, action) => {
             state.status = 'succeeded'
-            state.pages = action.payload
+            state.pages = action.payload.filter(p=>p.belong === 'Nation Sound')
         })
         .addCase(fetchPages.rejected, (state, action) => {
             state.status = 'failed'

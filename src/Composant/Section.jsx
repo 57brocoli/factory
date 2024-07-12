@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import Content from './Content';
-// import { source } from '../assets/variable/Variable';
+import { source } from '../assets/variable/Variable';
 
 Section.propTypes = {
     section: PropTypes.shape({
@@ -34,15 +34,31 @@ function Section({section}) {
     if (section && section.class) {
         classs.push(...section.class.map(o => o.name));
     }
-    console.log(section);
+    const header = classs.includes("header")
+
     return (
-        <section className={classs.join(' ')} style={{...styles}}>
-            {section.contents.map(content =>{
-                return(
-                    <Content key={content.id} content={content}/>
-                )
-            })}
-        </section>
+        <>
+            {header ? 
+                <section className={classs.join(' ')} 
+                // style={{backgroundImage: `url(http://127.0.0.1:8000/uploads/page/${section.contents[0].images[0].name})`,...styles}}
+                 style={{ backgroundImage: `url(${source.uri}${section.contents[0].images[0].name})` }}
+                >
+                    {section.contents.map(content => (
+                    <Content key={content.id} content={content} type={"header"}/>
+                    ))}
+                </section>
+                :
+                <section className={classs.join(' ')} style={{...styles}}>
+                    {section.contents.map(content =>{
+                        return(
+                            <Content key={content.id} content={content} type={"section"}/>
+                        )
+                    })}
+                </section>
+            }
+            
+        </>
+        
         
     )
 }

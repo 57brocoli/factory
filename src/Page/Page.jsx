@@ -3,7 +3,6 @@ import Navigation from '../Composant/Navigation';
 import PropTypes from 'prop-types';
 import { useDimention } from '../assets/variable/Variable';
 import Section from '../Composant/Section';
-// import { source } from '../assets/variable/Variable';
 
 Page.propTypes = {
     data: PropTypes.shape({
@@ -26,7 +25,6 @@ function Page({data}) {
 
     const h = useDimention()
     const height = h.height
-    console.log(data);
 
     let styles = {};
     if (data && data.styles) {
@@ -35,25 +33,13 @@ function Page({data}) {
             return acc;
         }, {});
     }
-
+console.log(data);
     return (
         <div style={{minHeight: height}} className='d-flex f-direction-colum j-content-between'>
             <Navigation/>
             <main style={{...styles}}>
                 {data ?
                     <>
-                        {data.sections
-                            .filter(section=>section.Category==='Header')
-                            .map(section=>{
-                            return(
-                                <section key={section.id} className='header t-center'
-                                 style={{ backgroundImage: `url(http://127.0.0.1:8000/uploads/page/${section.contents[0].images[0].name})` }}
-                                //  style={{ backgroundImage: `url(${source.uri}${section.images[0].name})` }}
-                                 >
-                                    <article dangerouslySetInnerHTML={{ __html: section.contents[0].content }}></article>
-                                </section>
-                            )
-                        })}
                         {data.sections
                             .filter(section=>section.Category==='Section')
                             .map(section=>{

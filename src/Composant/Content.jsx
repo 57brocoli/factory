@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { source } from '../assets/variable/Variable';
 
 Content.propTypes = {
     content: PropTypes.shape({
@@ -20,10 +21,11 @@ Content.propTypes = {
                 name: PropTypes.string.isRequired,
             })
         ).isRequired,
-    })
+    }),
+    type : PropTypes.string.isRequired,
 }
 
-function Content({content}) {
+function Content({content, type}) {
 
     let styles = {};
     if (content && content.styles) {
@@ -37,25 +39,28 @@ function Content({content}) {
         classs.push(...content.class.map(o => o.name));
     }
 
-    console.log(content);
     return (
         <section className={classs.join(' ')} style={{...styles}}>
-            <article >
-                <article dangerouslySetInnerHTML={{ __html: content.content }}></article>
-            </article>
-            {content.images.length > 0 &&
-                <div className='imageContainer'>
-                    {content.images.map((img, index) => {
-                        return(
-                            <div key={index} className='d-flex a-items-center'>
-                                <img key={index} 
-                                // src={`${source.uri}${img.name}`} 
-                                src={`http://127.0.0.1:8000/uploads/page/${img.name}`} 
-                                alt="image section" className='imageSection'/>
-                            </div>
-                        )
-                    })}
-                </div>
+            {type === "header"?
+                    <article dangerouslySetInnerHTML={{ __html: content.content }}></article>
+            :
+                <>
+                    <article dangerouslySetInnerHTML={{ __html: content.content }}></article>
+                    {content.images.length > 0 &&
+                        <div className='imageContainer'>
+                            {content.images.map((img, index) => {
+                                return(
+                                    <div key={index} className='d-flex a-items-center'>
+                                        <img key={index} 
+                                        src={`${source.uri}${img.name}`} 
+                                        // src={`http://127.0.0.1:8000/uploads/page/${img.name}`} 
+                                        alt="image section" className='imageSection'/>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    }
+                </>
             }
         </section>
     )

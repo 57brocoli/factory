@@ -34,6 +34,8 @@ main{
     color: white;
 }
 
+
+/*************************************************************** STYLES DE LA BASE DE DONEES **************************************/
 .container{
     max-width: 80%;
     margin: 0 auto;
@@ -45,7 +47,17 @@ main{
 .sideBySide > * {
     flex: 1;
 }
-
+.colonne-inverse {
+    display: flex;
+    flex-direction: column-reverse;
+}
+.ligne-inverse {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+}
+/********************************************************** FIN STYLES DE LA BASE DE DONEES **************************************/
 .t-center{
     text-align: center;
 }

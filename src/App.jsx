@@ -21,8 +21,9 @@ function App() {
     const pages = useSelector(state => state.pages.pages);
 
     const routes = pages.map(page => (
-        <Route key={page.id} path={`/${page.name}`} element={<Page data={page} />} />
+        <Route key={page.id} path={`/${page.slug}`} element={<Page data={page} />} />
     ));
+    
     return (
         <Router>
             <Routes>
